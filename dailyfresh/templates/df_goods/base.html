@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="header_con">
+		<div class="header">
+			<div class="welcome fl">欢迎来到天天生鲜!</div>
+			<div class="fr">
+				{% if request.session.user_name|default:'' != '' %}
+                    <div class="login_info fl" style="display: block">
+					欢迎您：<em>{{ request.session.user_name }}</em>
+                        <span>|</span>
+                        <a href="/user/logout/">退出</a>
+				    </div>
+                {% else %}
+                    <div class="login_btn fl" style="display: block">
+                        <a href="/user/login/">登录</a>
+                        <span>|</span>
+                        <a href="/user/register/">注册</a>
+                    </div>
+                {% endif %}
+				<div class="user_link fl">
+					<span>|</span>
+					<a href="/user/info/">用户中心</a>
+					<span>|</span>
+					<a href="/cart/cartinfo/">我的购物车</a>
+					<span>|</span>
+					<a href="/user/order/">我的订单</a>
+				</div>
+			</div>
+		</div>
+	</div>
+    <div class="search_bar clearfix">
+		<a href="/" class="logo fl"><img src="/static/images/logo.png"></a>
+		<div class="search_con fl">
+			<form method='get' action="/search/" target="_blank">
+                <input type="text" class="input_text fl" name="q">
+                <input type="submit" class="input_btn fr" value="搜索">
+            </form>
+		</div>
+		<div class="guest_cart fr">
+			<a href="/cart/cartinfo" class="cart_name fl">我的购物车</a>
+            {% if request.session.user_name != '' %}
+                <div class="goods_count fl" id="show_count">{{ count }}</div>
+            {% else %}
+			    <div class="goods_count fl" id="show_count">0</div>
+            {% endif %}
+		</div>
+	</div>
+    {% if index == 1 %}
+        <div class="navbar_con">
+            <div class="navbar">
+                <h1 class="fl">全部商品分类</h1>
+                <ul class="navlist fl">
+                    <li><a href="">首页</a></li>
+                    <li class="interval">|</li>
+                    <li><a href="">手机生鲜</a></li>
+                    <li class="interval">|</li>
+                    <li><a href="">抽奖</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="center_con clearfix">
+            <ul class="subnav fl">
+                <li><a href="#model01" class="fruit">新鲜水果</a></li>
+                <li><a href="#model02" class="seafood">海鲜水产</a></li>
+                <li><a href="#model03" class="meet">猪牛羊肉</a></li>
+                <li><a href="#model04" class="egg">禽类蛋品</a></li>
+                <li><a href="#model05" class="vegetables">新鲜蔬菜</a></li>
+                <li><a href="#model06" class="ice">速冻食品</a></li>
+            </ul>
+            <div class="slide fl">
+                <ul class="slide_pics">
+                    <li><img src="/static/images/slide.jpg" alt="幻灯片"></li>
+                    <li><img src="/static/images/slide02.jpg" alt="幻灯片"></li>
+                    <li><img src="/static/images/slide03.jpg" alt="幻灯片"></li>
+                    <li><img src="/static/images/slide04.jpg" alt="幻灯片"></li>
+                </ul>
+                <div class="prev"></div>
+                <div class="next"></div>
+                <ul class="points"></ul>
+            </div>
+            <div class="adv fl">
+                <a href="#"><img src="/static/images/adv01.jpg"></a>
+                <a href="#"><img src="/static/images/adv02.jpg"></a>
+            </div>
+        </div>
+    {% endif %}
+    {% if detail == 1 %}
+        <div class="navbar_con">
+		<div class="navbar clearfix">
+			<div class="subnav_con fl">
+				<h1>全部商品分类</h1>
+				<span></span>
+				<ul class="subnav">
+					<li><a href="#" class="fruit">新鲜水果</a></li>
+					<li><a href="#" class="seafood">海鲜水产</a></li>
+					<li><a href="#" class="meet">猪牛羊肉</a></li>
+					<li><a href="#" class="egg">禽类蛋品</a></li>
+					<li><a href="#" class="vegetables">新鲜蔬菜</a></li>
+					<li><a href="#" class="ice">速冻食品</a></li>
+				</ul>
+			</div>
+			<ul class="navlist fl">
+				<li><a href="">首页</a></li>
+				<li class="interval">|</li>
+				<li><a href="">手机生鲜</a></li>
+				<li class="interval">|</li>
+				<li><a href="">抽奖</a></li>
+			</ul>
+		</div>
+	</div>
+    {% endif %}
+    {% block body %}
+    {% endblock body %}
+
+    {% block script %}
+    {% endblock script %}
+{% endblock content %}
